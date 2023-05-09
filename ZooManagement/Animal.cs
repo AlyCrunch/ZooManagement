@@ -2,13 +2,13 @@
 {
     public class Animal
     {
-        public Type Type { get; set; }
+        public Species Species { get; set; }
         public string Name { get; set; }
         public double Weight { get; set; }
 
         public double GetDailyMeat()
-            => Weight * Type.GetRatioMeat();
+            => Weight * Species.GetRateMeat();
         public double GetDailyFruit()
-            => Weight * Type.GetRatioFruit();
+            => Weight * Species.GetRateFruit();
     }
 }
