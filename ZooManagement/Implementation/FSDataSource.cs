@@ -9,9 +9,11 @@ namespace ZooManagement
 {
     public class FSDataSource : IDataSource
     {
+        readonly string _path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
         public List<Animal> GetAnimals(Dictionary<string, Species> species)
         {
-            XElement zoo = XElement.Load(@"Resources\zoo.xml");            
+            XElement zoo = XElement.Load(_path + @"\Resources\zoo.xml");            
             return zoo.Descendants()
                 .Where(x => x.Attribute("name") != null)
                 .Select(x => new Animal( 
@@ -23,7 +25,7 @@ namespace ZooManagement
 
         public Dictionary<string, decimal> GetPrices()
         {
-            var file = File.ReadAllLines(@"Resources\prices.txt");
+            var file = File.ReadAllLines(_path + @"\Resources\prices.txt");
             return file.Select(x => x.Split('=', StringSplitOptions.RemoveEmptyEntries))
                        .ToLookup(x => x[0], y => decimal.Parse(y[1],CultureInfo.InvariantCulture))
                        .ToDictionary(x => x.Key, y => y.First());
@@ -31,7 +33,7 @@ namespace ZooManagement
 
         public Dictionary<string, Species> GetSpecies()
         {
-            var file = File.ReadAllLines(@"Resources\animals.csv");
+            var file = File.ReadAllLines(_path + @"\Resources\animals.csv");
 
             return file.Select(x => x.Split(';', StringSplitOptions.RemoveEmptyEntries))
                        .Select(x => ArrayToSpecies(x))

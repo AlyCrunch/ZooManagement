@@ -3,7 +3,7 @@ using ZooManagement;
 using ZooAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-var zoo = new ZooManager(new MockDataSource());
+var zoo = new ZooManager(new FSDataSource());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
