@@ -3,18 +3,18 @@
     public class Species
     {
         public string Name { get; set; }
-        public double Rate { get; set; }
+        public float Rate { get; set; }
         public int Meat { get; set; } = 0;
         public int Fruit { get; set; } = 0;
 
-        public Species(string name, double rate, int meat, int fruit)
+        public Species(string name, float rate, int meat, int fruit)
         {
             Name = name;
             Rate = rate;
             Meat = meat;
             Fruit = fruit;
         }
-        public Species(string name, double rate, string diet, int percent = 0)
+        public Species(string name, float rate, string diet, int percent = 0)
         {
             Name = name;
             Rate = rate;
@@ -27,9 +27,9 @@
             }
         }
 
-        public double GetRateMeat()
+        public float GetRateMeat()
             => Rate * Meat / 100;
-        public double GetRateFruit()
+        public float GetRateFruit()
             => Rate * Fruit / 100;
 
         // override object.Equals

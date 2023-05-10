@@ -4,21 +4,21 @@
     {
         public Species Species { get; set; }
         public string Name { get; set; }
-        public double Weight { get; set; }
+        public float Weight { get; set; }
 
-        public Animal(Species species, string name, double weight)
+        public Animal(Species species, string name, float weight)
         {
             Species = species;
             Name = name;
             Weight = weight;
         }
 
-        public double GetDailyMeat()
+        public float GetDailyMeat()
             => Weight * Species.GetRateMeat();
-        public double GetDailyFruit()
+        public float GetDailyFruit()
             => Weight * Species.GetRateFruit();
-        public double GetDaily(double meatPrice, double fruitPrice)
-            => GetDailyMeat() * meatPrice + GetDailyFruit() * fruitPrice;
+        public decimal GetDaily(decimal meatPrice, decimal fruitPrice)
+            => (decimal)GetDailyMeat() * meatPrice + (decimal)GetDailyFruit() * fruitPrice;
 
         public override bool Equals(object obj)
         {

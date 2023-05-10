@@ -5,22 +5,20 @@ using System.Globalization;
 
 namespace ZooManagement
 {
-    public class Zoo
+    public class ZooManager
     {
         public IEnumerable<Animal> Animals { get; set; }
         public Dictionary<string, Species> Species { get; set; }
-        public Dictionary<string, double> Prices { get; set; }
+        public Dictionary<string, decimal> Prices { get; set; }
 
-        public Zoo(IDataSource ds)
+        public ZooManager(IDataSource ds)
         {
             Prices = ds.GetPrices();
             Species = ds.GetSpecies();
             Animals = ds.GetAnimals(Species);
         }
 
-        public double GetDailyFood()
-            => Animals.Sum(x => 
-                x.GetDailyMeat() * Prices["Meat"] + 
-                x.GetDailyFruit() * Prices["Fruit"]);
+        public decimal GetDailyFood()
+            => Animals.Sum(x => x.GetDaily(Prices["Meat"], Prices["Fruit"]));
     }
 }

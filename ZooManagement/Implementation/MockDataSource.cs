@@ -27,20 +27,20 @@ namespace ZooManagement
                 new Animal(species["Wolf"],"Pin", 78),
                 new Animal(species["Wolf"],"Pon", 69),
 
-                new Animal(species["Piranha"],"Anastasia", 0.5)
+                new Animal(species["Piranha"],"Anastasia", 0.5f)
             };
 
-        public Dictionary<string, double> GetPrices()
-            => new Dictionary<string, double> { { "Meat", 12.56 }, { "Fruit", 5.60 } };
+        public Dictionary<string, decimal> GetPrices()
+            => new Dictionary<string, decimal> { { "Meat", 12.56M }, { "Fruit", 5.60M } };
 
         public Dictionary<string, Species> GetSpecies()
         => new Dictionary<string, Species>{
-                {"Lion" , new Species("Lion", 0.10, "meat")},
-                {"Tiger" ,new Species("Tiger", 0.09, "meat")},
-                {"Giraffe" ,new Species("Giraffe", 0.08, "fruit")},
-                {"Zebra" ,new Species("Zebra", 0.08, "fruit")},
-                {"Wolf" ,new Species("Wolf", 0.07, "both", 90)},
-                {"Piranha" ,new Species("Piranha", 0.5, "both", 50)},
+                {"Lion" , new Species("Lion", 0.10f, "meat")},
+                {"Tiger" ,new Species("Tiger", 0.09f, "meat")},
+                {"Giraffe" ,new Species("Giraffe", 0.08f, "fruit")},
+                {"Zebra" ,new Species("Zebra", 0.08f, "fruit")},
+                {"Wolf" ,new Species("Wolf", 0.07f, "both", 90)},
+                {"Piranha" ,new Species("Piranha", 0.5f, "both", 50)},
             };
     }
 }

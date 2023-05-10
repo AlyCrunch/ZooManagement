@@ -17,15 +17,15 @@ namespace ZooManagement
                 .Select(x => new Animal( 
                     species[x.Name.ToString()],
                     x.Attribute("name").Value,
-                    TryGetDouble(x.Attribute("kg").Value)))
+                    float.Parse(x.Attribute("kg").Value, CultureInfo.InvariantCulture)))
                 .ToList();
         }
 
-        public Dictionary<string, double> GetPrices()
+        public Dictionary<string, decimal> GetPrices()
         {
             var file = File.ReadAllLines(@"Resources\prices.txt");
             return file.Select(x => x.Split('=', StringSplitOptions.RemoveEmptyEntries))
-                       .ToLookup(x => x[0], y => TryGetDouble(y[1]))
+                       .ToLookup(x => x[0], y => decimal.Parse(y[1],CultureInfo.InvariantCulture))
                        .ToDictionary(x => x.Key, y => y.First());
         }
 
@@ -43,15 +43,9 @@ namespace ZooManagement
         {
             return new Species(
                 arr[0],
-                TryGetDouble(arr[1]),
+                float.Parse(arr[1], CultureInfo.InvariantCulture),
                 arr[2],
                 (arr[2] == "both") ? int.Parse(arr[3][..^1]) : 0);
-        }
-
-        public double TryGetDouble(string str)
-        {
-            bool success = double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture , out double d);
-            return success ? d : throw new Exception("Double parsing failed");
         }
 
     }
