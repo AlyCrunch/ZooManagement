@@ -5,26 +5,15 @@
         public string Name { get; set; }
         public float Rate { get; set; }
         public int Meat { get; set; } = 0;
-        public int Fruit { get; set; } = 0;
+        public int Fruit { get => 100 - Meat;}
 
-        public Species(string name, float rate, int meat, int fruit)
-        {
-            Name = name;
-            Rate = rate;
-            Meat = meat;
-            Fruit = fruit;
-        }
         public Species(string name, float rate, string diet, int percent = 0)
         {
             Name = name;
             Rate = rate;
             if (diet == "meat") Meat = 100;
-            if (diet == "fruit") Fruit = 100;
-            if (diet == "both")
-            {
-                Meat = percent;
-                Fruit = 100 - percent;
-            }
+            if (diet == "fruit") Meat = 0;
+            if (diet == "both") Meat = percent;
         }
 
         public float GetRateMeat()

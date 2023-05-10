@@ -20,5 +20,9 @@ namespace ZooManagement
 
         public decimal GetDailyFood()
             => Animals.Sum(x => x.GetDaily(Prices["Meat"], Prices["Fruit"]));
+
+        public decimal GetDailyFoodBySpecies(string species)
+            => Animals.Where(x => x.Species.Name == species)
+            .Sum(x => x.GetDaily(Prices["Meat"], Prices["Fruit"]));
     }
 }

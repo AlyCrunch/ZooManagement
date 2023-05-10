@@ -67,6 +67,26 @@ namespace ZooManagementTest
             Assert.Equal(result, AnastasiaFS.GetDaily(_ZooFS.Prices["Meat"], _ZooFS.Prices["Fruit"]));
         }
 
+        [Fact]
+        public void LionDailyFood()
+        {
+            //Simba (160kg), Mufasa(190kg), Nala (172kg) as lion eat 10% of bw
+            //meat as 12,56
+            var result = 655.632M;
 
+            Assert.Equal(result, _ZooFS.GetDailyFoodBySpecies("Lion"));
+            Assert.Equal(result, _ZooFS.GetDailyFoodBySpecies("Lion"));
+        }
+
+        [Fact]
+        public void Total()
+        {
+            //The daily total should be :
+            var result = 1609.00896M;
+
+            Assert.Equal(result, _ZooFS.GetDailyFood());
+            Assert.Equal(result, _ZooFS.GetDailyFood());
+
+        }
     }
 }
